@@ -64,7 +64,7 @@
 
   /****************************    Motor maxthrottle    *******************************/
     /* this is the maximum value for the ESCs at full power, this value can be increased up to 2000 */
-    #define MAXTHROTTLE 1900
+    #define MAXTHROTTLE 2000
 
   /****************************    Mincommand          *******************************/
     /* this is the value for the ESCs when they are not armed
@@ -203,7 +203,11 @@
       /* enforce your individual sensor orientation - even overrides board specific defaults */
       //#define FORCE_ACC_ORIENTATION(X, Y, Z)  {imu.accADC[ROLL]  =  Y; imu.accADC[PITCH]  = -X; imu.accADC[YAW]  = Z;}
       //#define FORCE_GYRO_ORIENTATION(X, Y, Z) {imu.gyroADC[ROLL] = -Y; imu.gyroADC[PITCH] =  X; imu.gyroADC[YAW] = Z;}
-        #define FORCE_GYRO_ORIENTATION(X, Y, Z) {imu.gyroADC[ROLL] = -Y; imu.gyroADC[YAW] =  X; imu.gyroADC[PITCH] = Z;} //CMK to allow for the board to be rolled onto the side of the plane, I assigned YAW to X and PITCH to Z
+	  
+	  //Old comment: CMK to allow for the board to be rolled onto the side of the plane, I assigned YAW to X and PITCH to Z
+	  //New Comment: Commented out the line below to resume default operation for the seaduck
+      //  #define FORCE_GYRO_ORIENTATION(X, Y, Z) {imu.gyroADC[ROLL] = -Y; imu.gyroADC[YAW] =  X; imu.gyroADC[PITCH] = Z;} 
+	  
       //#define FORCE_MAG_ORIENTATION(X, Y, Z)  {imu.magADC[ROLL]  =  X; imu.magADC[PITCH]  =  Y; imu.magADC[YAW]  = Z;}
 
       /* Board orientation shift */
@@ -235,7 +239,7 @@
    /********************************    ARM/DISARM    *********************************/
    /* optionally disable stick combinations to arm/disarm the motors.
      * In most cases one of the two options to arm/disarm via TX stick is sufficient */
-    #define ALLOW_ARM_DISARM_VIA_TX_YAW
+    //#define ALLOW_ARM_DISARM_VIA_TX_YAW
     //#define ALLOW_ARM_DISARM_VIA_TX_ROLL
 
     /********************************    SERVOS      *********************************/
@@ -270,12 +274,12 @@
   /***********************          Airplane                       ***********************/
     //#define USE_THROTTLESERVO // For use of standard 50Hz servo on throttle.
 
-    //#define FLAPPERONS    AUX4          // Mix Flaps with Aileroins.
+    #define FLAPPERONS    AUX4          // Mix Flaps with Aileroins.
     #define FLAPPERON_EP   { 1500, 1700 } // Endpooints for flaps on a 2 way switch else set {1020,2000} and program in radio.
     #define FLAPPERON_INVERT { -1, 1 }    // Change direction om flapperons { Wing1, Wing2 }
     
     //#define FLAPS                       // Traditional Flaps on SERVO3.
-    //#define FLAPSPEED     3             // Make flaps move slowm Higher value is Higher Speed.
+    #define FLAPSPEED     3             // Make flaps move slowm Higher value is Higher Speed.
 
   /***********************      Common for Heli & Airplane         ***********************/
 
@@ -521,7 +525,7 @@ At this moment you can use this function only with WinGUI 2.3 release. MultiWiiC
       //#define GYRO_LPF_256HZ     // This is the default setting, no need to uncomment, just for reference
       //#define GYRO_LPF_188HZ
       //#define GYRO_LPF_98HZ
-      //#define GYRO_LPF_42HZ
+      #define GYRO_LPF_42HZ
       //#define GYRO_LPF_20HZ
       //#define GYRO_LPF_10HZ
       //#define GYRO_LPF_5HZ       // Use this only in extreme cases, rather change motors and/or props -- setting not available on ITG3200
